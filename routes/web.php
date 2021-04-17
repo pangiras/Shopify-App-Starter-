@@ -22,8 +22,12 @@ Route::get('/login', function () {
 
 Route::middleware(['auth.shopify'])->group(function () {
     Route::get('/', function () {
-        return view('welcome');
+        return view('dashboard');
     })->name('home');
 
     // Other routes that need the shop user
 });
+
+Route::view('/orders','orders');
+Route::view('/customers','customers');
+Route::view('/settings','settings');
