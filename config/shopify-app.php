@@ -170,7 +170,7 @@ return [
     |
     */
 
-    'api_scopes' => env('SHOPIFY_API_SCOPES', 'read_products,write_products'),
+    'api_scopes' => env('SHOPIFY_API_SCOPES', 'read_products,write_products,write_script_tags,write_script_tags,read_assigned_fulfillment_orders, write_assigned_fulfillment_orders, read_content, write_content,read_themes, write_themes,read_products, write_products,read_product_listings,read_customers, write_customers, read_orders, write_orders,write_order_edits,read_draft_orders, write_draft_orders,read_inventory, write_inventory,read_locations, read_fulfillments, write_fulfillments, read_assigned_fulfillment_orders, write_assigned_fulfillment_orders, read_merchant_managed_fulfillment_orders, write_merchant_managed_fulfillment_orders, read_third_party_fulfillment_orders, write_third_party_fulfillment_orders,read_shipping, write_shipping,read_analytics,read_checkouts, write_checkouts,read_shopify_payments_payouts,read_shopify_payments_disputes,read_locales, write_locales'),
 
     /*
     |--------------------------------------------------------------------------

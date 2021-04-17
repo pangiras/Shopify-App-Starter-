@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +13,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/login', function () {
+    if (Auth::user()) {
+        return redirect()->route('home');
+    }
+    return view('login');
+})->name('login');
+
+Route::middleware(['auth.shopify'])->group(function () {
+    Route::get('/', function () {
+        return view('welcome');
+    })->name('home');
+
+    // Other routes that need the shop user
 });
