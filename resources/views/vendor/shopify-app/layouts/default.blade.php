@@ -6,6 +6,8 @@
 
         <title>{{ \Osiset\ShopifyApp\getShopifyConfig('app_name') }}</title>
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+
+        <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
         <script src="https://unpkg.com/turbolinks"></script>
         @yield('styles')
     </head>
@@ -28,7 +30,7 @@
                 var app = createApp({
                     apiKey: '{{ \Osiset\ShopifyApp\getShopifyConfig('api_key', Auth::user()->name ) }}',
                     shopOrigin: '{{ Auth::user()->name }}',
-                    forceRedirect: true,
+                    forceRedirect: false,
                 });
             </script>
 
@@ -36,5 +38,6 @@
         @endif
 
         @yield('scripts')
+        <script src="{{ asset('js/app.js') }}"></script>
     </body>
 </html>

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\SettingController;    
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,10 +25,20 @@ Route::middleware(['auth.shopify'])->group(function () {
     Route::get('/', function () {
         return view('dashboard');
     })->name('home');
+    Route::view('/orders','orders');
+    Route::view('/customers','customers');
+    Route::view('/settings','settings');
+    Route::post('configureTheme',[SettingController::class,'configureTheme']);
+
+    Route::get('/test', function(){
+
+        $shop = Auth::user();
+        $shopApi = $shop->api()->rest('GET', '/admin/shop.json')['body']['shop'];
+        return json_encode($shopApi);
+
+    });
 
     // Other routes that need the shop user
 });
 
-Route::view('/orders','orders');
-Route::view('/customers','customers');
-Route::view('/settings','settings');
+
