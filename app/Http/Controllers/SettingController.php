@@ -29,6 +29,12 @@ class SettingController extends Controller
         $array = array('asset' => array('key' => 'snippets/iconnectApp.liquid', 'value' => $snippet));
 
         $shop->api()->rest('PUT', '/admin/themes/'.$activeThemeId.'/assets.json', $array);
+        // save data into database
+
+        Setting::updateOrCreate(
+            ['shop_id' => $shop->name],
+            ['activated' => true]
+        );
 
         return ['message' => 'Theme setup succesfully'];
     }

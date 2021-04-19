@@ -1,8 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\Setting;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\SettingController;    
+use App\Http\Controllers\SettingController;  
+  
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,7 +25,9 @@ Route::get('/login', function () {
 
 Route::middleware(['auth.shopify'])->group(function () {
     Route::get('/', function () {
-        return view('dashboard');
+        $shop= Auth::user();
+        $settings= Setting::where("shop_id",$shop->name)->first();
+        return view('dashboard',compact('settings'));
     })->name('home');
     Route::view('/orders','orders');
     Route::view('/customers','customers');
